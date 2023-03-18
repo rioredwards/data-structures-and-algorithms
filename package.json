@@ -1,0 +1,23 @@
+{
+  "name": "data_structs_and_algos",
+  "version": "1.0.0",
+  "description": "Practicing data-structures and algorithms",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -w",
+    "start": "lite-server"
+  },
+  "keywords": [
+    "data-structures",
+    "algorithms",
+    "practice",
+    "leetcode"
+  ],
+  "author": "Rio Edwards",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "typescript": "^5.0.2"
+  }
+}
