@@ -16,9 +16,6 @@ class ListNode<T> implements ListNode<T> {
   }
 }
 
-const testNode = new ListNode(1);
-console.log("testNode: ", testNode);
-
 // -- Linked List
 interface LinkedList<T> {
   head: ListNode<T> | null;
@@ -40,19 +37,32 @@ class LinkedList<T> implements LinkedList<T> {
     this.length = node ? 1 : 0;
   }
 
+  push(value: T) {
+    const newNode = new ListNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail!.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
   print() {
     let currentNode = this.head;
     let output = "";
     while (currentNode) {
       output += currentNode.value;
       currentNode = currentNode.next;
+      if (currentNode) output += ", ";
     }
     console.log(output);
   }
 }
 
-const testListWithNode = new LinkedList(testNode);
-console.log(testListWithNode.print());
-
-const testListEmpty = new LinkedList();
-console.log(testListEmpty.print());
+const testList = new LinkedList();
+testList.push(1).print();
+testList.push(2).print();
+testList.push("hello").print();
