@@ -21,8 +21,15 @@ interface LinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   length: number;
-  insert(value: T): void;
-  remove(value: T): void;
+
+  get(idx: number): ListNode<T> | null;
+  set(idx: number, value: T): boolean;
+  push(value: T): LinkedList<T>;
+  pop(): ListNode<T> | null;
+  shift(): ListNode<T> | null;
+  unShift(value: T): LinkedList<T>;
+  insert(idx: number, value: T): boolean;
+  remove(idx: number): ListNode<T> | undefined;
   print(): void;
 }
 
@@ -116,6 +123,30 @@ class LinkedList<T> implements LinkedList<T> {
     return this;
   }
 
+  insert(idx: number, value: T) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === 0) return !!this.unShift(value);
+    if (idx === this.length) return !!this.push(value);
+
+    const newNode = new ListNode(value);
+    const lowerNodeConnect = this.get(idx - 1);
+    const upperNodeConnect = lowerNodeConnect!.next;
+    newNode.next = upperNodeConnect;
+    lowerNodeConnect!.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(idx: number) {
+    if (idx < 0 || idx >= this.length) return undefined;
+    if (idx === 0) return this.shift();
+    if (idx === this.length - 1) return this.pop();
+    const lowerNodeConnect = this.get(idx - 1);
+    const removedNode = lowerNodeConnect!.next;
+    lowerNodeConnect!.next = removedNode!.next;
+    return removedNode;
+  }
+
   print() {
     let currNode = this.head;
     let output = "";
@@ -128,7 +159,7 @@ class LinkedList<T> implements LinkedList<T> {
   }
 }
 
-const testList = new LinkedList();
+const testList: LinkedList<string> = new LinkedList();
 testList.push("Hello").push("my").push("name").push("is").push("Rio").print();
 console.log("popping off:", testList.pop()?.value);
 testList.print();
@@ -138,7 +169,17 @@ console.log("unShifting: hello");
 testList.unShift("hello");
 testList.print();
 console.log("getting value at index: 2: ", testList.get(2)?.value);
-
 console.log("setting: Rio at testList.length - 1");
 testList.set(testList.length - 1, "Rio");
+testList.print();
+testList.insert(3, "is");
+testList.print();
+
+testList.remove(0);
+testList.print();
+testList.remove(5);
+testList.print();
+testList.remove(-5);
+testList.print();
+testList.remove(testList.length - 1);
 testList.print();
