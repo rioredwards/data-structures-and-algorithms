@@ -43,7 +43,14 @@ class LinkedList<T> implements LinkedList<T> {
     for (let i = 0; i < idx; i++) {
       currNode = currNode!.next;
     }
-    return currNode!.value;
+    return currNode;
+  }
+
+  set(idx: number, value: T) {
+    const targetNode = this.get(idx);
+    if (!targetNode) return false;
+    targetNode.value = value;
+    return true;
   }
 
   push(value: T) {
@@ -56,17 +63,18 @@ class LinkedList<T> implements LinkedList<T> {
       this.tail = newNode;
     }
     this.length++;
+    console.log(this.length);
     return this;
   }
 
   pop() {
     if (!this.head) return null;
     if (this.length === 1) {
-      const returnVal = this.head.value;
+      const returnNode = this.head;
       this.head = null;
       this.tail = null;
       this.length--;
-      return returnVal;
+      return returnNode;
     }
     let currNode = this.head;
     let prevNode = currNode;
@@ -77,22 +85,22 @@ class LinkedList<T> implements LinkedList<T> {
     this.tail = prevNode;
     this.tail.next = null;
     this.length--;
-    return currNode.value;
+    return currNode;
   }
 
   shift() {
     if (!this.head) return null;
     if (this.length === 1) {
-      const returnVal = this.head.value;
+      const returnNode = this.head;
       this.head = null;
       this.tail = null;
       this.length--;
-      return returnVal;
+      return returnNode;
     }
-    const returnVal = this.head.value;
+    const returnNode = this.head;
     this.head = this.head.next;
     this.length--;
-    return returnVal;
+    return returnNode;
   }
 
   unShift(value: T) {
@@ -121,27 +129,16 @@ class LinkedList<T> implements LinkedList<T> {
 }
 
 const testList = new LinkedList();
-testList.push(1).print();
-testList.push(2).print();
 testList.push("Hello").push("my").push("name").push("is").push("Rio").print();
-console.log("popping off:", testList.pop());
+console.log("popping off:", testList.pop()?.value);
 testList.print();
-console.log("shifting off:", testList.shift());
+console.log("shifting off:", testList.shift()?.value);
 testList.print();
 console.log("unShifting: hello");
 testList.unShift("hello");
 testList.print();
+console.log("getting value at index: 2: ", testList.get(2)?.value);
 
-console.log("getting value at index: 2: ", testList.get(2));
-console.log("getting value at index: 1: ", testList.get(1));
-console.log("getting value at index: 0: ", testList.get(0));
-console.log("getting value at index: -1: ", testList.get(-1));
-console.log("getting value at index: 10: ", testList.get(10));
-console.log(
-  "getting value at index: testList.length: ",
-  testList.get(testList.length)
-);
-console.log(
-  "getting value at index: testList.length - 1: ",
-  testList.get(testList.length - 1)
-);
+console.log("setting: Rio at testList.length - 1");
+testList.set(testList.length - 1, "Rio");
+testList.print();
