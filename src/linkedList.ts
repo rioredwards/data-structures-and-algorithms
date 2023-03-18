@@ -50,13 +50,31 @@ class LinkedList<T> implements LinkedList<T> {
     return this;
   }
 
+  pop() {
+    if (!this.head) return undefined;
+    let currNode = this.head;
+    let prevNode = currNode;
+    while (currNode.next) {
+      prevNode = currNode;
+      currNode = currNode.next;
+    }
+    this.tail = prevNode;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return currNode;
+  }
+
   print() {
-    let currentNode = this.head;
+    let currNode = this.head;
     let output = "";
-    while (currentNode) {
-      output += currentNode.value;
-      currentNode = currentNode.next;
-      if (currentNode) output += ", ";
+    while (currNode) {
+      output += currNode.value;
+      currNode = currNode.next;
+      if (currNode) output += ", ";
     }
     console.log(output);
   }
@@ -66,3 +84,10 @@ const testList = new LinkedList();
 testList.push(1).print();
 testList.push(2).print();
 testList.push("hello").print();
+console.log("popping off:", testList.pop()?.value);
+testList.print();
+console.log("popping off all:");
+while (testList.length > 0) {
+  console.log(testList.pop()?.value);
+}
+console.log(testList);
