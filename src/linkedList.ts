@@ -30,6 +30,7 @@ interface LinkedList<T> {
   unShift(value: T): LinkedList<T>;
   insert(idx: number, value: T): boolean;
   remove(idx: number): ListNode<T> | undefined;
+  reverse(): LinkedList<T>;
   print(): void;
 }
 
@@ -147,6 +148,22 @@ class LinkedList<T> implements LinkedList<T> {
     return removedNode;
   }
 
+  reverse() {
+    let currNode = this.head;
+    this.head = this.tail;
+    this.tail = currNode;
+
+    let prevNode: ListNode<T> | null = null;
+    let nextNode: ListNode<T> | null = null;
+    for (let i = 0; i < this.length; i++) {
+      nextNode = currNode!.next;
+      currNode!.next = prevNode;
+      prevNode = currNode;
+      currNode = nextNode;
+    }
+    return this;
+  }
+
   print() {
     let currNode = this.head;
     let output = "";
@@ -174,12 +191,8 @@ testList.set(testList.length - 1, "Rio");
 testList.print();
 testList.insert(3, "is");
 testList.print();
-
 testList.remove(0);
 testList.print();
-testList.remove(5);
-testList.print();
-testList.remove(-5);
-testList.print();
-testList.remove(testList.length - 1);
+
+testList.reverse();
 testList.print();
