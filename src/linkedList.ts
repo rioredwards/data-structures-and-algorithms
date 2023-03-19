@@ -17,24 +17,24 @@ class ListNode<T> implements ListNode<T> {
 }
 
 // -- Linked List
-interface LinkedList<T> {
+interface singlyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   length: number;
 
   get(idx: number): ListNode<T> | null;
   set(idx: number, value: T): boolean;
-  push(value: T): LinkedList<T>;
+  push(value: T): singlyLinkedList<T>;
   pop(): ListNode<T> | null;
   shift(): ListNode<T> | null;
-  unShift(value: T): LinkedList<T>;
+  unShift(value: T): singlyLinkedList<T>;
   insert(idx: number, value: T): boolean;
   remove(idx: number): ListNode<T> | undefined;
-  reverse(): LinkedList<T>;
+  reverse(): singlyLinkedList<T>;
   print(): void;
 }
 
-class LinkedList<T> implements LinkedList<T> {
+class singlyLinkedList<T> implements singlyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   length: number;
@@ -71,7 +71,6 @@ class LinkedList<T> implements LinkedList<T> {
       this.tail = newNode;
     }
     this.length++;
-    console.log(this.length);
     return this;
   }
 
@@ -176,7 +175,7 @@ class LinkedList<T> implements LinkedList<T> {
   }
 }
 
-const testList: LinkedList<string> = new LinkedList();
+const testList: singlyLinkedList<string> = new singlyLinkedList();
 testList.push("Hello").push("my").push("name").push("is").push("Rio").print();
 console.log("popping off:", testList.pop()?.value);
 testList.print();
@@ -193,6 +192,5 @@ testList.insert(3, "is");
 testList.print();
 testList.remove(0);
 testList.print();
-
 testList.reverse();
 testList.print();
