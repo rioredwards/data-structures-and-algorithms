@@ -17,7 +17,7 @@ class ListNode<T> implements ListNode<T> {
 }
 
 // -- Linked List
-interface singlyLinkedList<T> {
+export interface singlyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   length: number;
@@ -34,7 +34,7 @@ interface singlyLinkedList<T> {
   print(): void;
 }
 
-class singlyLinkedList<T> implements singlyLinkedList<T> {
+export class singlyLinkedList<T> implements singlyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
   length: number;
