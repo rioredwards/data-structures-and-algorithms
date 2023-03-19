@@ -175,22 +175,22 @@ export class singlyLinkedList<T> implements singlyLinkedList<T> {
   }
 }
 
-const testList: singlyLinkedList<string> = new singlyLinkedList();
-testList.push("Hello").push("my").push("name").push("is").push("Rio").print();
-console.log("popping off:", testList.pop()?.value);
-testList.print();
-console.log("shifting off:", testList.shift()?.value);
-testList.print();
-console.log("unShifting: hello");
-testList.unShift("hello");
-testList.print();
-console.log("getting value at index: 2: ", testList.get(2)?.value);
-console.log("setting: Rio at testList.length - 1");
-testList.set(testList.length - 1, "Rio");
-testList.print();
-testList.insert(3, "is");
-testList.print();
-testList.remove(0);
-testList.print();
-testList.reverse();
-testList.print();
+// const testList: singlyLinkedList<string> = new singlyLinkedList();
+// testList.push("Hello").push("my").push("name").push("is").push("Rio").print();
+// console.log("popping off:", testList.pop()?.value);
+// testList.print();
+// console.log("shifting off:", testList.shift()?.value);
+// testList.print();
+// console.log("unShifting: hello");
+// testList.unShift("hello");
+// testList.print();
+// console.log("getting value at index: 2: ", testList.get(2)?.value);
+// console.log("setting: Rio at testList.length - 1");
+// testList.set(testList.length - 1, "Rio");
+// testList.print();
+// testList.insert(3, "is");
+// testList.print();
+// testList.remove(0);
+// testList.print();
+// testList.reverse();
+// testList.print();
