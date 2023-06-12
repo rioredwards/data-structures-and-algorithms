@@ -194,3 +194,25 @@ export class singlyLinkedList<T> implements singlyLinkedList<T> {
 // testList.print();
 // testList.reverse();
 // testList.print();
+
+// if (!head || head.next === null) return head;
+//     // Declare currNode = head
+//     let currNode = head;
+//     // Declare prevNode
+//     let prevNode: ListNode | null = null;
+//     // Declare nextNode
+//     let nextNode: ListNode | null = null;
+
+//     // Loop through list
+//     do {
+//         // Set nextNode = currNode.next
+//         nextNode = currNode.next;
+//         // Set currNode.next = prevNode
+//         currNode.next = prevNode;
+//         // Set prevNode = currNode
+//         prevNode = currNode;
+//         // Set currNode = nextNode
+//         currNode = nextNode;
+//     } while(nextNode);
+
+//     return prevNode;
